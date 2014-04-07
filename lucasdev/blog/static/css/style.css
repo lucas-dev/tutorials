@@ -1,0 +1,387 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: url("../fonts/DXI1O.ttf") format('truetype');
+}
+
+body{
+	margin: 0;
+	padding: 0;
+	background-color: #EEEEEE;
+    color: #393939;
+    font-family: 'Open Sans','Verdana','Georgia','Times New Roman',serif;
+
+}
+
+a, a:visited {
+    color: #F03366;
+    text-decoration: none;
+}
+#div-header{
+	height: 3.1em;
+	background-color: #393939;
+	box-shadow: 0 4px 4px #CCCCCC;
+	padding: 10px ;
+}
+
+#div-header h1 {
+    display: inline-block;
+    float: left;
+    font-size: 1.4em;
+}
+
+#div-header h1 a, #div-header h1 a:visited {
+    color: #DDDDDD;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#div-header .links{
+    text-align: right;
+    margin-top: 4.5em;
+}
+
+#div-header .links li {
+    display: inline-block;
+}
+
+#div-header .links li a {
+    font-size: 1.3em;
+}	
+
+
+#div-body{
+	min-height: 400px;
+	padding: 20px 20px;
+}
+
+#div-about h2{
+	margin: 1.5em 0 0.7em 0.3em;
+}
+
+h2,h3 {
+    border-bottom: 1px solid #DDDDDD;
+    color: #F03366;
+    font-size: 1.8em;
+
+}
+
+h3{
+	font-size: 1.3em;
+}
+
+h2, h3 {
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+img {
+    border: 1px solid #CCCCCC;
+    padding: 5px;
+}
+
+.img-about{
+	width: 150px;
+	height: 100px;
+    float:left;
+    margin: 0 10px 0 5px;
+}
+
+p, .post-prose {
+    margin: 0 10px 15px 0;
+    text-align: justify;
+}
+
+#credits{
+	text-align: right;
+}
+
+#div-footer, #div-footer-bottom{
+	background-color: #DDDDDD;
+    border-top: 1px solid #CCCCCC;
+    height: 40px;
+    padding: 20px 30px;
+    text-align: right;
+
+}
+
+#div-footer p{
+	margin-top: 10px;
+}
+
+#div-right{
+	
+}
+
+.title-entry {
+    color: #F03366;
+    font-size: 1.3em;
+}
+
+
+.entry{
+	border-bottom: 1px solid #DDDDDD;
+}
+
+
+.entry .post-prose{
+	margin-top: 10px;
+}
+
+#p-share{
+	font-weight:bold;
+}
+
+#tags-title{
+	font-weight: bold;
+}
+
+#div-footer-bottom{
+	position: relative;
+	clear: both;
+}
+
+.img-post{
+	width:50%;
+	height: 50%;
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+	#div-header{
+		height: 3.1em;
+		background-color: #393939;
+		box-shadow: 0 4px 4px #CCCCCC;
+		padding: 10px 30px;
+	}
+
+	#div-header h1 {
+	    display: inline-block;
+	    float: left;
+	    font-size: 2em;
+	}
+
+	#div-header .links {
+	    display: inline-block;
+	    float: right;
+	    padding-top: 1em;
+	    margin-top: 0;
+	    position: relative;
+	}
+
+	#div-header .links li {
+	    display: inline;
+	    padding: 0 7px;
+	}
+
+	#div-body{
+		min-height: 490px;
+		padding: 20px 60px;
+	}
+
+	#div-about h2{
+		margin-top: 0.8em;
+		margin-right: 1.5em;
+		margin-left: -0.0em;
+		margin-bottom: 0.7em;
+	}
+	#div-about .left {
+	    display: inline-block;
+	    float: left;
+	    width: 33%;
+	}
+
+	.img-about{
+		max-width: 100%;
+		height: 220px;
+		margin: 0;
+		width: 400px;
+
+	}
+
+	#div-about .right{
+		display: inline-block;
+	    float: right;
+	    margin-left: 1%;
+	    width: 64%;
+	}
+
+
+	p, .post-prose {
+	    margin:0 0 15px 0;
+	    text-align: justify;
+	}
+
+	#div-right{
+		margin-left: 0;
+	}
+
+	.title-entry {
+	    color: #F03366;
+	    font-size: 1.3em;
+	}
+}
+
+/* Medium devices (desktops, 992px and up) 
+@media (min-width: 992px) { ... }
+*/
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+	#div-header{
+		height: 3.1em;
+		background-color: #393939;
+		box-shadow: 0 4px 4px #CCCCCC;
+		padding: 10px 30px;
+	}
+
+	#div-header h1 {
+	    display: inline-block;
+	    float: left;
+	    font-size: 2em;
+	}
+
+	#div-header h1 a, #div-header h1 a:visited {
+	    color: #DDDDDD;
+	    font-weight: bold;
+	    text-decoration: none;
+	}
+
+	#div-header .links {
+	    display: inline-block;
+	    float: right;
+	    padding-top: 1em;	
+	    position: relative;
+	    margin: 0;
+	    text-align: left;
+	}
+
+	#div-header .links li {
+	    display: inline;
+	    padding: 0 7px;
+	}
+
+	#div-header .links li a {
+	    font-size: 1.3em;
+	}
+
+	
+
+	#div-body{
+		min-height: 490px;
+		padding: 20px 60px;
+	}
+
+	#div-about h2{
+		margin-top: 0.8em;
+		margin-right: 2.2em;
+		margin-left: -0.0em;
+		margin-bottom: 0.7em;
+	}
+
+	h2 {
+	    border-bottom: 1px solid #DDDDDD;
+	    color: #F03366;
+	    font-size: 1.8em;
+	}
+
+	h2, h3 {
+	    text-shadow: 0 1px 0 #FFFFFF;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+	    font-weight: normal;
+	}
+
+	#div-about .left {
+	    display: inline-block;
+	    float: left;
+	    width: 350px;
+
+	}
+
+	.img-about{
+		width: 400px;
+		height: 276px;
+		margin: 0;
+	}
+
+	img {
+	    border: 1px solid #CCCCCC;
+	    padding: 5px;
+	}
+
+	#div-about .right{
+		display: inline-block;
+	    float: left;
+	    width: 64%;
+	    margin-left: 30px;
+	}
+
+	p, .post-prose {
+
+	    margin:  0 0 15px 0;
+	    text-align: justify;
+	}
+
+	#credits{
+		text-align: right;
+	}	
+
+	
+	#div-footer{
+		background-color: #DDDDDD;
+	    border-top: 1px solid #CCCCCC;
+	    height: 40px;
+	    padding: 20px 30px;
+	    text-align: right;
+	    position : absolute;
+	    bottom : 0;
+	    height : 40px;
+	    margin-top : 40px;
+	    left: 0;
+	    right: 0;
+	}
+
+	#div-body > div{
+		display: inline;
+		float: left;
+	}
+
+	#div-left{
+		width: 70%;
+		min-height: 100%;
+	}
+
+	#div-right{
+		width: 20%;	
+		margin-left: 3%;
+	}
+
+	p, .post-prose {
+	    margin:  0 0 15px 0;
+	    text-align: justify;
+	}
+
+	.img-post{
+		width: 400px;
+		height: 350px;
+		margin: 5px 0 15px;
+		padding: 15px 15px 15px;
+	    background-color: white;
+	    box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+	    -moz-box-shadow: 0 1px 2px rgba(34,25,25,0.4);
+	    -webkit-box-shadow: 0 1px 3px rgba(34, 25, 25, 0.4);
+	    
+	}
+
+	#tags{
+		margin-top: 15px;
+		
+	}
+	
+}
