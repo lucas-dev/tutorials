@@ -1,0 +1,17 @@
+<htm>
+	<head>
+		{% load staticfiles %}
+		<link rel="stylesheet" href="{% static "css/style.css" %}" />
+	</head>
+	<body>
+		<h1>
+			Django deployment tutorial
+		</h1>	
+		{% load staticfiles %}
+		<img src="{% static "img/pyar.png" %}">
+		<h1>featuring mod_wsgi and PostgreSQL </h1>
+		{%for entry in entries%}
+			{{entry.text}}
+		{%endfor%}
+	</body>
+</html>
