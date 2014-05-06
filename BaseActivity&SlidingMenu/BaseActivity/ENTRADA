@@ -1,0 +1,181 @@
+In this tutorial, we are going to illustrate the use of a very acertada
+desicition when developing mobile applications: the abstraction of many
+commons features of the app or de la mano of a single activity, called simply a base activity.
+
+We will also cover the steps to have an Sliding menu running in most SO distributions.
+
+The app we are going to make
+This demo app quite simple, and this pictures talks more than 1000 words. 
+
+Base Activity
+Using base activities is always a good idea to avoid code duplications among activities 
+that share some puntual behaviors, as well as offering the change to imponer a set of rules
+to  define the construction of the derived activities.
+
+Take a look at the following activity class:
+
+ 
+public abstract class BaseActivity extends Activity{
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setUpLayout();
+		setContentView(getLayoutResourceId());
+		initGUI();
+		goNext();
+	}
+	
+	protected abstract int getLayoutResourceId();
+
+	protected abstract void goNext();
+
+	protected abstract void initGUI();
+	
+	private void setUpLayout() {
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+	}
+	
+	protected void showToast(String msg) {
+		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+}
+
+As you can see, altough this class extends the Activity class, it's not an
+usual activity. We are making it abstract because we don't want it to be instanciated
+nor to be added to the AndroidManifest.
+
+Some abstracts methods have been declared to hacer un contrato de uso, as well as some
+other have been implemented because of the acciones puntuales que desempeñan. 
+
+Extending the base activity is pretty straighforward:
+
+public class ActivityNoMenu extends BaseActivity{
+
+	@Override
+	protected int getLayoutResourceId() {
+		return R.layout.activity_no_menu;
+	}
+
+	@Override
+	protected void goNext() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
+	protected void initGUI() {
+		showToast("Entering "+this.getClass().getName());
+	}
+}
+
+The first thing you probably noted, is that even this is an activity, it doesn't
+look like one at first sight.
+The tyoical onCreate method is not defined, and this is where the evince that base 
+activities offer the chance to take control of the development I mentioned early 
+comes to scene.
+In the abstract base activity, we can defined the execution flow of the code, as we did
+with the onCreate method.
+This is also corrobored by the goNext() method. You could always include a method like this
+in order to impose that the code for the buttons is always in one single place, this way the 
+code always follow the pattern of your choice.
+
+SlidingMenu
+Newers versions of Android inlude a native Sliding Menu system named NavigationDrawer.
+For older version that doesn't support this feature, there are many chances available to emulate
+it, being the SlidingMenu library by Jeremy Feinstein the more estable del monton.
+
+Installation
+Download the library from:
+
+descompress it anywhere and follow these steps:
+
+[image]
+
+Basic usage
+We are going to make some modifications to the base activity to include the habilidad to
+display a sliding menu:
+
+Note: the modified code is in bold.
+public abstract class BaseActivity extends SlidingActivity {
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setUpLayout();
+		setContentView(getLayoutResourceId());
+		setUpSlideMenu();
+			
+		initGUI();
+		goNext();
+	}
+
+
+	private void setUpSlideMenu() {
+		setBehindContentView(R.layout.menu);
+		getSlidingMenu().setBehindOffset(100);
+		getSlidingMenu().setTouchModeAbove(showSideMenu()?SlidingMenu.TOUCHMODE_FULLSCREEN:SlidingMenu.TOUCHMODE_NONE);
+	}
+
+	
+	protected abstract int getLayoutResourceId();
+
+	protected abstract void goNext();
+
+	protected abstract void initGUI();
+	
+	protected abstract boolean showSideMenu();
+	
+	private void setUpLayout() {
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
+	}
+	
+	protected void showToast(String msg) {
+		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+}
+
+This activity's functionality is properly described in the comments, now let's see a tipical
+implementation:
+public class ActivityWithMenu extends BaseActivity{
+
+	@Override
+	protected int getLayoutResourceId() {
+		return R.layout.activity_with_menu;
+	}
+
+	@Override
+	protected void goNext() {
+		
+	}
+
+	@Override
+	protected void initGUI() {
+		showToast("Entering "+this.getClass().getSimpleName());
+	}
+
+	@Override
+	protected boolean showSideMenu() {
+		return true;
+	}
+
+}
+
+The goNext() doesn't need to be implemented due the lack of a next button, but the showSideMenu()
+method is implement and returns true, so the code in the BaseActivity always knows that the menu must be shown.
+ 
+
+CONCLUSION
+We demonstrated how useful could a base activity be. This approach is specially useful for coomon ui tasks
+that should be consistent accross differnt applications, like the use of option menues or progress indidicatiors,
+also, by defining abstract methods, you can take adventage of a good couple of its features, like 
+
+.
+
+Thanks for taking this tutorial, the source code for this demo project is available at:
+
+
+ 
+
+ 
