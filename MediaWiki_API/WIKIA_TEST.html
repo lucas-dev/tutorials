@@ -1,0 +1,81 @@
+<html>
+	<head>
+		<script src="jquery.js"></script>
+		<script>
+			$(document).ready(function(){
+				url = prompt("Enter wiki URL. Eg: alf.wikia.com");
+				html = "";
+				$.getJSON("http://"+url+"/api.php?action=query&list=allcategories&aclimit=max&format=json&callback=?", function(data){
+					console.log(JSON.stringify(data));
+					var listCategories = $("#cat-links");
+					$.each(data.query.allcategories, function(i, row){
+						console.log(JSON.stringify(row));
+						var _url = "http://"+url+"/wiki/Category:"+encodeURIComponent(row['*']);
+						listCategories.append('<li><a href="#" id="cat_'+row["*"]+'">'+_url+'</a></li>');
+					});
+				});
+				
+				$('[id^="cat_"]').live("click", function(){
+					html = "";
+					var category = ($(this).attr("id")).split("cat_")[1];
+					processNextPageOfResults(category);					
+				});
+			});
+	
+			function processNextPageOfResults(category, nextPage){
+				$.getJSON("http://"+url+"/api.php?action=query&list=categorymembers&cmtitle=Category:"+category+"&cmlimit=max&format=json&callback=?"+(nextPage!=undefined?"&cmcontinue="+nextPage:""), function(data){
+					$.each(data.query.categorymembers, function(i, row){
+						_encodededURL = encodeURIComponent(row.title);
+						_url = "http://"+url+"/wiki/"+_encodededURL;
+						html = html.concat('<a href="'+_url+'" target="_blank">'+_url+'<br>');
+						$("#category-title").html(category);
+					});
+					$("#div-right span").html(html);
+					if(data["query-continue"]!=undefined){
+						nextPage = data["query-continue"].categorymembers.cmcontinue;
+						processNextPageOfResults(category, nextPage)
+					 }
+				});
+			}
+		</script>
+		<style>
+			#div-container{
+				border: 1px solid;
+				overflow: hidden;
+				border: 1px solid black;
+			}
+			#div-left{
+				float:left;
+				width: 49%;
+				word-wrap: break-word;
+				border-right: 1px solid;
+				
+			}
+			#div-right{
+				float:left;
+				width:50%;
+				padding-left: 10px;
+			}
+			
+			h1{
+				padding-left: 10px;
+				border-bottom: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div-container">
+			<div id="div-left">
+				<h1>Categories</h1><span></span>
+				<ul id="cat-links">
+				</ul>
+			</div>
+			<div id="div-right">
+				<h1>Pages</h1>
+				<h2 id="category-title"></h2>
+				<span></span>
+			</div>
+		</div>
+	</body>
+		
+</html>
